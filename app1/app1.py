@@ -2,6 +2,7 @@ from flask_restful import Resource, Api, reqparse
 import db_interface as dbi
 from flask import Flask
 import pandas as pd
+from text_generation_chat_bot import run
 
 app1 = Flask(__name__)
 api = Api(app1)
@@ -17,10 +18,8 @@ class Chat(Resource):
         
         args = parser.parse_args()
         
-        if dbi.add_user(args['user'], args['pas'], args['email'], args['DoB'], args['country'], args['batch'], args['gender'] ):
-            return {'data': args}, 200
-        else:
-            return "Data format error", 403
+        response = run.evaluateInput(run.encoder, run.decoder, run.searcher, run.voc, args['text'])
+        return {"data": response}
 
 
 api.add_resource(Chat, '/users')
