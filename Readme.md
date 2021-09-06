@@ -1,7 +1,8 @@
- # Load balancing Sample
+# Load balancing API with docker
 
- #### How to use :
- - To launch the APP, just open a terminal, go inside the unzipped folder, at the same level with docker-compose.yml, and execute : docker-compose up
- - This will spin up the dockerised architecture. After that, you need to open a browser and tape : http://localhost:8080
- - It will redirect 60% traffic to app1 and 40% traffic to app2.
- - To quit, you can just CTRL + C in the terminal and it will stop the application and destroy the created containers.
+two end points where configured and can be are deployed thanks to nginx and docker-compose.
+
+## Testing:
+The APi is deployed on my own personal service. Original request are taken in port 80 or 8080 and get redirected based on load to one of the two possible endpoints.
+
+http://79.157.104.23/test
