@@ -3,3 +3,4 @@ flask_restful
 pandas
 sqlalchemy
 pymysql
+torch
