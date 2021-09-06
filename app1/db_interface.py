@@ -1,15 +1,9 @@
-from sqlalchemy import create_engine
-from md5 import md5
+import sqlite3
 import pandas as pd
-import pymysql
 
 
-pas = ""
-with open("pass",'r') as p:
-        pas = p.read()
-        
-engine = create_engine("mysql+pymysql://phpmyadmin:{}@localhost:3306/phpmyadmin".format(pas.strip()))
-conn = engine.connect()
+
+conn = sqlite3.connect('../user_db.db')
 
 
 def get_sum(user):
@@ -17,22 +11,14 @@ def get_sum(user):
     res = conn.execute("SELECT md5 from users where user = '{}'".format(user))
     return res.fetchone()[0]
 
-def add_user(user, pas, email, DoB, country_of_residence, batch, gender ):
+def add_user(user, email, DoB, country, batch ):
     try:
         
-        md5_sum = md5(pas)
-        conn.execute("INSERT INTO users (user, email, batch, md5,country_of_residence, gender, DoB) VALUES('{}','{}','{}','{}','{}','{}','{}')".format(user, email, batch, md5_sum, country_of_residence, gender, DoB))
+        conn.execute("INSERT INTO users (user, email, batch,country, DoB) VALUES('{}','{}','{}','{}','{}','{}','{}')".format(user, email, batch, country, DoB))
         return True
     except:
         return False
 
-def add_user_grades(user):
-    try:
-
-        conn.execute("INSERT INTO grades VALUES('{}',0,0)".format(user))
-        return True
-    except:
-        return False
 
 def get_batch(user):
     
@@ -77,3 +63,7 @@ def update_user(email, args):
         return df.to_dict()
     except:
         return False 
+
+
+#add_user("jon", "jonperezetxebarria@gmail.com", "1997-08-13", "spain", "Other" )
+print(get_all_users())
