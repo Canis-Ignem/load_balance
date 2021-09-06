@@ -1,27 +1,18 @@
 from flask_restful import Resource, Api, reqparse
 from flask import Flask
-import pandas as pd
-from text_generation_chat_bot import run
+
 
 app1 = Flask(__name__)
 api = Api(app1)
 
-class Chat(Resource):
+class Test(Resource):
 
-
-
-    def post(self):
-        parser = reqparse.RequestParser()
+    def get(self):
         
-        parser.add_argument('text', required = True)
-        
-        args = parser.parse_args()
-        
-        response = run.evaluateInput(run.encoder, run.decoder, run.searcher, run.voc, args['text'])
-        return {"data": response}
+        return {'Data': 'This is endpoint one'}
 
 
-api.add_resource(Chat, '/users')
+api.add_resource(Test, '/test')
 
 
 
