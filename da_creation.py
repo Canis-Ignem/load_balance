@@ -1,5 +1,5 @@
 import sqlite3
-
+import pandas as pd
 
 def create_db():
     """
@@ -14,4 +14,8 @@ def create_db():
         country TEXT,
         DoB date);
         ''')
-create_db()
+#create_db()
+conn = sqlite3.connect('user_db.db')
+
+df = pd.read_sql_query("SELECT user from users", conn)
+print(df)
