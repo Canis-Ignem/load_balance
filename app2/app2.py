@@ -17,4 +17,4 @@ api.add_resource(Test, '/test')
 
 
 if __name__ == '__main__':
-   app2.run(debug=True, host='0.0.0.0')
+   app2.run(host='0.0.0.0')
