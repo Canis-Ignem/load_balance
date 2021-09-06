@@ -1,13 +1,6 @@
 from flask_restful import Resource, Api, reqparse
-import db_interface as dbi
 from flask import Flask
 import pandas as pd
-
-app2 = Flask(__name__)
-api = Api(app2)
-
-from flask_restful import Resource, Api, reqparse
-from flask import Flask
 
 
 app2 = Flask(__name__)
